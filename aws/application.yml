@@ -31,7 +31,7 @@ Resources:
           LogDriver: gelf
           Options:
             'gelf-address': 'udp://syslog.linn.co.uk:12201'
-            'tag': !Sub goternberg-6-ecs-task
+            'tag': !Sub gotenberg-6-ecs-task
         Environment:
         - Name: awsRegion
           Value: !Ref AWS::Region
