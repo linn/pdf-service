@@ -21,13 +21,11 @@ if [ "${TRAVIS_BRANCH}" = "master" ]; then
     STACK_NAME=htmlToPdfservice
     ENV_SUFFIX=-sys
   fi
+    # deploy the service to amazon
+    aws cloudformation deploy --stack-name $STACK_NAME --template-file ./aws/application.yml -parameter-overrides environmentSuffix=$ENV_SUFFIX
 else
   # not master - deploy to int if required
   echo do not deploy to int
 fi
-
-# deploy the service to amazon
-printenv STACK_NAME
-aws cloudformation deploy --stack-name $STACK_NAME --template-file ./aws/application.yml -parameter-overrides environmentSuffix=$ENV_SUFFIX
 
 echo "deploy complete"
