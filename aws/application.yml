@@ -32,6 +32,9 @@ Resources:
           Options:
             'gelf-address': 'udp://syslog.linn.co.uk:12201'
             'tag': !Sub goternberg-6-ecs-task
+        Environment:
+        - Name: awsRegion
+          Value: !Ref AWS::Region
         
   htmlToPdfService:
     Type: AWS::ECS::Service
