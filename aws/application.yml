@@ -1,0 +1,57 @@
+Description: Html To Pdf Service
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  TestClusterName:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: Name of test cluster
+    Default: TestClusterName
+  ProductionClusterName:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: Name of production cluster
+    Default: ProductionClusterName
+
+Conditions:
+  isTesting: !Or
+    - !Equals [!Ref environmentSuffix, "-int"]
+    - !Equals [!Ref environmentSuffix, "-sys"]
+
+Resources:
+  htmlToPdfTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+      - Name: gotenberg
+        Cpu: '1'
+        Essential: 'true'
+        Image: !Sub docker.io/thecodingmachine/gotenberg:6
+        PortMappings:
+        - ContainerPort: 5050
+        Memory: '512'
+        LogConfiguration:
+          LogDriver: gelf
+          Options:
+            'gelf-address': 'udp://syslog.linn.co.uk:12201'
+            'tag': !Sub goternberg-6-ecs-task
+        
+  htmlToPdfService:
+    Type: AWS::ECS::Service
+    Properties:
+      # Have to use long form conditional
+      Cluster: !If
+        - isTesting
+        - !Sub ${TestClusterName}
+        - !Sub ${ProductionClusterName}
+      DesiredCount: !If [ isTesting, 1, 2]
+      PlacementStrategies:
+        - Field: attribute:ecs.availability-zone
+          Type: spread
+        - Field: instanceId
+          Type: spread
+      TaskDefinition: !Ref htmlToPdfTaskDefinition
+      Role: ecsServiceRole
+      LoadBalancers:
+      - ContainerName: gotenberg
+        ContainerPort: 5050
+        TargetGroupArn:
+          Fn::ImportValue:
+            !Sub "htmlToPdf-target-group-arn${environmentSuffix}"
