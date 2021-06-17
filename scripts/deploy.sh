@@ -27,6 +27,6 @@ else
 fi
 
 # deploy the service to amazon
-aws cloudformation deploy --stack-name $STACK_NAME --template-file ./aws/application.yml environmentSuffix=$ENV_SUFFIX --capabilities=CAPABILITY_IAM
+aws cloudformation deploy --stack-name $STACK_NAME --template-file ./aws/application.yml -parameter-overrides environmentSuffix=$ENV_SUFFIX
 
 echo "deploy complete"
