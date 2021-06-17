@@ -27,7 +27,7 @@ else
 fi
 
 # deploy the service to amazon
-echo $STACK_NAME
+printenv STACK_NAME
 aws cloudformation deploy --stack-name $STACK_NAME --template-file ./aws/application.yml -parameter-overrides environmentSuffix=$ENV_SUFFIX
 
 echo "deploy complete"
