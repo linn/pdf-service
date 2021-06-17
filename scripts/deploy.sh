@@ -13,12 +13,12 @@ if [ "${TRAVIS_BRANCH}" = "master" ]; then
     # master - deploy to production
     echo deploy to production
 
-    STACK_NAME=html-to-pdf-service
+    STACK_NAME=htmlToPdfservice
   	ENV_SUFFIX=
   else
     # pull request based on master - deploy to sys
     echo deploy to sys
-    STACK_NAME=html-to-pdf-service
+    STACK_NAME=htmlToPdfservice
     ENV_SUFFIX=-sys
   fi
 else
