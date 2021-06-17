@@ -22,7 +22,7 @@ if [ "${TRAVIS_BRANCH}" = "main" ]; then
     ENV_SUFFIX=-sys
   fi
     # deploy the service to amazon
-    aws cloudformation deploy --stack-name $STACK_NAME --template-file ./aws/application.yml -parameter-overrides environmentSuffix=$ENV_SUFFIX
+    aws cloudformation deploy --stack-name $STACK_NAME --template-file ./aws/application.yml --parameter-overrides environmentSuffix=$ENV_SUFFIX
 else
   # not master - deploy to int if required
   echo do not deploy to int
