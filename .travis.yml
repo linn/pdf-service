@@ -4,4 +4,4 @@ mono: none
 services: docker
 before_install: 
  - chmod +x ./scripts/*.sh
-script: travis wait ./scripts/deploy.sh
+script: travis_wait ./scripts/deploy.sh
