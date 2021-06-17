@@ -8,7 +8,7 @@ unzip awscli-bundle.zip
 export PATH=~/bin:$PATH
 
 # deploy on aws
-if [ "${TRAVIS_BRANCH}" = "master" ]; then
+if [ "${TRAVIS_BRANCH}" = "main" ]; then
   if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     # master - deploy to production
     echo deploy to production
