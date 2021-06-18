@@ -16,9 +16,31 @@ Conditions:
     - !Equals [!Ref environmentSuffix, "-sys"]
 
 Resources:
+  htmlToPdfRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: [ "ecs-tasks.amazonaws.com" ]
+            Action: [ "sts:AssumeRole" ]
+      Path: "/"
+      Policies:
+      - PolicyName: htmlToPdfServices
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - sqs:SendMessage
+            Resource:
+              Fn::ImportValue: logging-queue-arn
   htmlToPdfTaskDefinition:
     Type: AWS::ECS::TaskDefinition
     Properties:
+      TaskRoleArn: !GetAtt storesRole.Arn
       ContainerDefinitions:
       - Name: gotenberg
         Cpu: '1'
