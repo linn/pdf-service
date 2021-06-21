@@ -1,0 +1,7 @@
+dist: xenial
+sudo: required
+mono: none
+services: docker
+before_install: 
+ - chmod +x ./scripts/*.sh
+script: travis_wait ./scripts/deploy.sh
