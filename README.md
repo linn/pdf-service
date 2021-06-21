@@ -3,7 +3,7 @@ An instance of [gotenberg](https://thecodingmachine.github.io/gotenberg/) hosted
 The primary use case is converting html files to pdf via the /convert/html endpoint. Sample C# code as follows
 
 ```cs
-public async Task<Stream> ConvertHtmlToPdf(string html)
+        public async Task<Stream> ConvertHtmlToPdf(string html)
         {
             using (var client = new HttpClient())
             {
