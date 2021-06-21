@@ -25,7 +25,7 @@ Resources:
         Essential: 'true'
         Image: !Sub docker.io/thecodingmachine/gotenberg:6
         PortMappings:
-        - ContainerPort: 5050
+        - ContainerPort: 3000
         Memory: '512'
         LogConfiguration:
           LogDriver: gelf
