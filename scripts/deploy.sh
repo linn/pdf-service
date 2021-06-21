@@ -18,14 +18,11 @@ if [ "${TRAVIS_BRANCH}" = "main" ]; then
   else
     # pull request based on master - deploy to sys
     echo deploy to sys
-    STACK_NAME=htmlToPdfservice
+    STACK_NAME=htmlToPdfservice-sys
     ENV_SUFFIX=-sys
   fi
     # deploy the service to amazon
-    aws cloudformation deploy --stack-name $STACK_NAME --template-file ./aws/application.yml --parameter-overrides environmentSuffix=$ENV_SUFFIX
-else
-  # not master - deploy to int if required
-  echo do not deploy to int
+    aws cloudformation deploy --stack-name $STACK_NAME --template-file ./aws/application.yml --parameter-overrides environmentSuffix=$ENV_SUFFIX --capabilities=CAPABILITY_IAM
 fi
 
 echo "deploy complete"
