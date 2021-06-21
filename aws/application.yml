@@ -2,13 +2,6 @@ Description: Html To Pdf Service
 AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
   TestClusterName:
-    environmentSuffix:
-    Type: String
-    AllowedValues:
-      - ''
-      - -int
-      - -sys
-    Description: Environment suffix e.g -int -sys
     Type: AWS::SSM::Parameter::Value<String>
     Description: Name of test cluster
     Default: TestClusterName
@@ -16,6 +9,13 @@ Parameters:
     Type: AWS::SSM::Parameter::Value<String>
     Description: Name of production cluster
     Default: ProductionClusterName
+  environmentSuffix:
+    Type: String
+    AllowedValues:
+      - ''
+      - -int
+      - -sys
+    Description: Environment suffix e.g -int -sys
 
 Conditions:
   isTesting: !Or
