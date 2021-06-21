@@ -83,7 +83,7 @@ Resources:
       Role: ecsServiceRole
       LoadBalancers:
       - ContainerName: gotenberg
-        ContainerPort: 5050
+        ContainerPort: 3000
         TargetGroupArn:
           Fn::ImportValue:
             !Sub "htmlToPdf-target-group-arn${environmentSuffix}"
