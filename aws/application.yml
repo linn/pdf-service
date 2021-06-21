@@ -47,7 +47,7 @@ Resources:
   htmlToPdfTaskDefinition:
     Type: AWS::ECS::TaskDefinition
     Properties:
-      TaskRoleArn: !GetAtt storesRole.Arn
+      TaskRoleArn: !GetAtt htmlToPdfRole.Arn
       ContainerDefinitions:
       - Name: gotenberg
         Cpu: '1'
