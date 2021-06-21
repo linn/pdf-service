@@ -1,7 +1,7 @@
 Description: Html To Pdf Service
 AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
-  rootPath:
+  ROOT_PATH:
     Type: String
     Description: The API service's root path
   TestClusterName:
