@@ -1,6 +1,15 @@
 An instance of [gotenberg](https://thecodingmachine.github.io/gotenberg/) hosted at app.linn.co.uk/pdf-service.
 
-The primary use case is converting html files to pdf via the /convert/html endpoint. Sample C# code as follows
+The primary use case is converting html files to pdf via a POST to the /convert/html endpoint: 
+```
+curl --request POST \
+    --url http://app.linn.co.uk/pdf-service/convert/html \
+    --header 'Content-Type: multipart/form-data' \
+    --form files=@index.html \
+    -o result.pdf
+```
+
+Sample C# Http Request as follows:
 
 ```cs
 public async Task<Stream> ConvertHtmlToPdf(string html)
@@ -25,8 +34,7 @@ public async Task<Stream> ConvertHtmlToPdf(string html)
             var response = await client.SendAsync(
                                    request, 
                                    HttpCompletionOption.ResponseContentRead);
-
-                   
+                                   
             var res = await response.Content.ReadAsStreamAsync();
             return res;
         }
