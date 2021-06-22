@@ -22,7 +22,7 @@ if [ "${TRAVIS_BRANCH}" = "main" ]; then
     ENV_SUFFIX=-sys
   fi
     # deploy the service to amazon
-    aws cloudformation deploy --stack-name $STACK_NAME --template-file ./aws/application.yml --parameter-overrides rootPath=/pdf-service/ environmentSuffix=$ENV_SUFFIX --capabilities=CAPABILITY_IAM
+    aws cloudformation deploy --stack-name $STACK_NAME --no-fail-on-empty-changeset --template-file ./aws/application.yml --parameter-overrides rootPath=/pdf-service/ environmentSuffix=$ENV_SUFFIX --capabilities=CAPABILITY_IAM
 fi
 
 echo "deploy complete"
