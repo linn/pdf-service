@@ -26,7 +26,7 @@ public async Task<Stream> ConvertHtmlToPdf(string html)
                 "index.html");
                                         
             var request =
-                new HttpRequestMessage(HttpMethod.Post, "http://app.linn.co.uk/pdf-service/convert/html")
+                new HttpRequestMessage(HttpMethod.Post, "https://app.linn.co.uk/pdf-service/convert/html")
                 {
                     Content = multiPartStream
                 };
