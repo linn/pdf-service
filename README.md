@@ -1,4 +1,4 @@
-An instance of [gotenberg](https://gotenberg.dev/docs/about](https://gotenberg.dev/docs/getting-started/introduction) hosted at app.linn.co.uk/pdf-service.
+An instance of [gotenberg](https://gotenberg.dev/docs/getting-started/introduction) hosted at app.linn.co.uk/pdf-service.
 
 The primary use case is converting html files to pdf via a POST to the /convert/html endpoint: 
 ```
