@@ -24,4 +24,4 @@ if [ "${TRAVIS_BRANCH}" = "main" ]; then
     aws cloudformation deploy --stack-name $STACK_NAME --no-fail-on-empty-changeset --template-file ./aws/application.yml --parameter-overrides rootPath=/pdf-service/ environmentSuffix=$ENV_SUFFIX --capabilities=CAPABILITY_IAM
 fi
 
-echo "deploy complete"
+echo "deploy complete "
