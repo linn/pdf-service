@@ -95,9 +95,3 @@ Resources:
           Type: spread
       TaskDefinition: !Ref htmlToPdfTaskDefinition
       Role: ecsServiceRole
-      LoadBalancers:
-      - ContainerName: gotenberg
-        ContainerPort: 3000
-        TargetGroupArn:
-          Fn::ImportValue:
-            !Sub "htmlToPdf-target-group-arn${environmentSuffix}"
