@@ -65,9 +65,9 @@ Resources:
             - "curl -f http://localhost:3000/health || exit 1"
         DockerLabels:
           traefik.enable: true
-          traefik.http.routers.marketing-ui.entrypoints: web
-          traefik.http.routers.marketing-ui.rule: "PathPrefix(`/pdf-service`)"
-          traefik.http.services.marketing-ui.loadbalancer.healthcheck.path: "/health"
+          traefik.http.routers.pdf-service.entrypoints: web
+          traefik.http.routers.pdf-service.rule: "PathPrefix(`/pdf-service`)"
+          traefik.http.services.pdf-service.loadbalancer.healthcheck.path: "/health"
         LogConfiguration:
           LogDriver: gelf
           Options:
