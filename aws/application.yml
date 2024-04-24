@@ -94,4 +94,4 @@ Resources:
         - Field: instanceId
           Type: spread
       TaskDefinition: !Ref htmlToPdfTaskDefinition
-      Role: ecsServiceRole
+      # Role: ecsServiceRole
