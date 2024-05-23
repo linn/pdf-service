@@ -63,7 +63,7 @@ Resources:
         HealthCheck:
           Command:
             - "CMD-SHELL"
-            - "curl -f http://localhost:3000/health || exit 1"
+            - "curl -f http://localhost:3000/pdf-service/health || exit 1"
         DockerLabels:
           traefik.enable: true
           traefik.http.routers.pdf-service.entrypoints: web
