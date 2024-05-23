@@ -76,7 +76,7 @@ Resources:
         Environment:
         - Name: awsRegion
           Value: !Ref AWS::Region
-        - Name: 'ROOT_PATH'
+        - Name: 'API_ROOT_PATH'
           Value: !Ref rootPath  
         
   htmlToPdfService:
