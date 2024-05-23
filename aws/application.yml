@@ -68,7 +68,7 @@ Resources:
           traefik.enable: true
           traefik.http.routers.pdf-service.entrypoints: web
           traefik.http.routers.pdf-service.rule: "PathPrefix(`/pdf-service`)"
-          traefik.http.services.pdf-service.loadbalancer.healthcheck.path: "/health"
+          traefik.http.services.pdf-service.loadbalancer.healthcheck.path: "/pdf-service/health"
         LogConfiguration:
           LogDriver: gelf
           Options:
