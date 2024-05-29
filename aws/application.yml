@@ -55,19 +55,29 @@ Resources:
       - Name: gotenberg
         Cpu: '1'
         Essential: 'true'
-        Image: !Sub docker.io/thecodingmachine/gotenberg:6
+        Image: !Sub gotenberg/gotenberg:8.4.0
+        Command: [ "/bin/bash", "-c", "gotenberg --api-root-path=/pdf-service/" ]
         PortMappings:
         - ContainerPort: 3000
         Memory: '512'
+        HealthCheck:
+          Command:
+            - "CMD-SHELL"
+            - "curl -f http://localhost:3000/pdf-service/health || exit 1"
+        DockerLabels:
+          traefik.enable: true
+          traefik.http.routers.pdf-service.entrypoints: web
+          traefik.http.routers.pdf-service.rule: "PathPrefix(`/pdf-service`)"
+          traefik.http.services.pdf-service.loadbalancer.healthcheck.path: "/pdf-service/health"
         LogConfiguration:
           LogDriver: gelf
           Options:
             'gelf-address': 'udp://syslog.linn.co.uk:12201'
-            'tag': !Sub gotenberg-6-ecs-task
+            'tag': !Sub gotenberg-8-ecs-task
         Environment:
         - Name: awsRegion
           Value: !Ref AWS::Region
-        - Name: 'ROOT_PATH'
+        - Name: 'API_ROOT_PATH'
           Value: !Ref rootPath  
         
   htmlToPdfService:
@@ -85,10 +95,4 @@ Resources:
         - Field: instanceId
           Type: spread
       TaskDefinition: !Ref htmlToPdfTaskDefinition
-      Role: ecsServiceRole
-      LoadBalancers:
-      - ContainerName: gotenberg
-        ContainerPort: 3000
-        TargetGroupArn:
-          Fn::ImportValue:
-            !Sub "htmlToPdf-target-group-arn${environmentSuffix}"
+      # Role: ecsServiceRole

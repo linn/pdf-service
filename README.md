@@ -3,7 +3,7 @@ An instance of [gotenberg](https://gotenberg.dev/docs/getting-started/introducti
 The primary use case is converting html files to pdf via a POST to the /convert/html endpoint: 
 ```
 curl --request POST \
-    --url http://app.linn.co.uk/pdf-service/convert/html \
+    --url http://app.linn.co.uk/pdf-service/forms/chromium/convert/html \
     --header 'Content-Type: multipart/form-data' \
     --form files=@index.html \
     -o result.pdf
@@ -26,7 +26,7 @@ public async Task<Stream> ConvertHtmlToPdf(string html)
                 "index.html");
                                         
             var request =
-                new HttpRequestMessage(HttpMethod.Post, "https://app.linn.co.uk/pdf-service/convert/html")
+                new HttpRequestMessage(HttpMethod.Post, "https://app.linn.co.uk/pdf-service/forms/chromium/convert/html")
                 {
                     Content = multiPartStream
                 };
