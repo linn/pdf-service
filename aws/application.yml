@@ -55,7 +55,7 @@ Resources:
       - Name: gotenberg
         Cpu: '1'
         Essential: 'true'
-        Image: !Sub gotenberg/gotenberg:8.4.0
+        Image: !Sub gotenberg/gotenberg:8.2-.0
         Command: [ "/bin/bash", "-c", "gotenberg --api-root-path=/pdf-service/" ]
         PortMappings:
         - ContainerPort: 3000
